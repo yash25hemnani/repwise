@@ -114,11 +114,63 @@ Deferred to the next milestone. Tracked but not in the current roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
+| AUTH-01 | Phase 1 | Pending |
+| AUTH-02 | Phase 1 | Pending |
+| AUTH-03 | Phase 1 | Pending |
+| AUTH-04 | Phase 1 | Pending |
+| AUTH-05 | Phase 1 | Pending |
+| THEM-01 | Phase 1 | Pending |
+| THEM-02 | Phase 1 | Pending |
+| REL-01 | Phase 1 | Pending |
+| REL-02 | Phase 1 | Pending |
+| REL-03 | Phase 1 | Pending |
+| ADMN-01 | Phase 2 | Pending |
+| ADMN-02 | Phase 2 | Pending |
+| ADMN-03 | Phase 2 | Pending |
+| ADMN-04 | Phase 2 | Pending |
+| ADMN-05 | Phase 2 | Pending |
+| ADMN-06 | Phase 2 | Pending |
+| ADMN-07 | Phase 2 | Pending |
+| LIB-01 | Phase 2 | Pending |
+| LIB-02 | Phase 2 | Pending |
+| LIB-03 | Phase 2 | Pending |
+| LIB-04 | Phase 2 | Pending |
+| LIB-08 | Phase 2 | Pending |
+| PLAN-01 | Phase 3 | Pending |
+| PLAN-02 | Phase 3 | Pending |
+| PLAN-03 | Phase 3 | Pending |
+| SESS-01 | Phase 3 | Pending |
+| SESS-02 | Phase 3 | Pending |
+| SESS-03 | Phase 3 | Pending |
+| SESS-04 | Phase 3 | Pending |
+| SESS-09 | Phase 3 | Pending |
+| SESS-10 | Phase 3 | Pending |
+| SESS-11 | Phase 3 | Pending |
+| WIDG-01 | Phase 4 | Pending |
+| WIDG-02 | Phase 4 | Pending |
+| WIDG-03 | Phase 4 | Pending |
+| WIDG-04 | Phase 4 | Pending |
+| WIDG-05 | Phase 4 | Pending |
+| WIDG-06 | Phase 4 | Pending |
+| SESS-05 | Phase 5 | Pending |
+| SESS-06 | Phase 5 | Pending |
+| SESS-07 | Phase 5 | Pending |
+| SESS-08 | Phase 5 | Pending |
+| LIB-05 | Phase 5 | Pending |
+| LIB-06 | Phase 5 | Pending |
+| LIB-07 | Phase 5 | Pending |
+| PLAN-04 | Phase 6 | Pending |
+| PROG-01 | Phase 6 | Pending |
+| PROG-02 | Phase 6 | Pending |
+| PROG-03 | Phase 6 | Pending |
+| PROG-04 | Phase 6 | Pending |
+| PROG-05 | Phase 6 | Pending |
 
 **Coverage:**
 - v1 requirements: 51 total
-- Mapped to phases: 0 (filled by roadmap)
+- Mapped to phases: 51
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-11-20*
-*Last updated: 2026-11-20 after initial definition*
+*Last updated: 2026-11-20 after roadmap creation (traceability filled)*
