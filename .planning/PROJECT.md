@@ -57,7 +57,13 @@ At the gym, the user can see their current exercise and what they lifted last ti
 - [ ] In-app updates via the `ota_update` package, downloading APKs published as GitHub Releases
 - [ ] App checks the latest GitHub Release and prompts the user to update
 
-**Protein tracker (later phase)**
+**v1 extras (from scoping)**
+- [ ] Rest timer, session notes, swap/skip exercise, ad-hoc sessions
+- [ ] Session history, exercise history with personal bests, progression charts, weekly stats and streak
+- [ ] Custom exercises, favourites, equipment filter, personal exercise notes
+- [ ] Weekly muscle coverage: which muscles the plan covers and which were hit this week
+
+**Protein tracker (v2, next milestone)**
 - [ ] User logs food manually with protein grams
 - [ ] User types what they ate in free text, and AI returns an itemised protein estimate
 - [ ] AI calls go through the Express backend: Groq (free tier) first, Gemini as fallback. No AI keys in the app
