@@ -44,8 +44,5 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# graphify local files
-graphify-out/cache/
-graphify-out/.graphify_*
-graphify-out/manifest.json
-graphify-out/cost.json
+# graphify (generated)
+graphify-out/

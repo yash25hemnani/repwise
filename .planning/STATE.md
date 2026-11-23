@@ -1,6 +1,13 @@
 ---
-gsd_state_version: '1.0'
+gsd_state_version: "1.0"
+current_phase: 1
+current_phase_name: Foundation, Auth & OTA Release
 status: planning
+stopped_at: Phase 1 context gathered
+last_updated: "2026-11-23T11:31:12.764Z"
+last_activity: 2026-11-20
+last_activity_desc: Roadmap created (6 phases, 51/51 v1 requirements mapped)
+state_head: c6e492639328250080f320a4b7b2155e72d51368
 progress:
   total_phases: 6
   completed_phases: 0
@@ -60,7 +67,7 @@ Recent decisions affecting current work:
 
 ### Pending Todos
 
-None yet.
+- [Design]: The old design brief (`.planning/DESIGN-BRIEF.md`) was removed on 2026-11-23. The user will supply a design update later. Apply it to the theme tokens and screens when it arrives (THEM-02).
 
 ### Blockers/Concerns
 
@@ -81,6 +88,6 @@ Items acknowledged and deferred at milestone close, most recent first:
 
 ## Session Continuity
 
-Last session: 2026-11-20
-Stopped at: Roadmap created, awaiting user approval
-Resume file: None
+Last session: 2026-11-23T11:31:12.675Z
+Stopped at: Phase 1 context gathered
+Resume file: .planning/phases/01-foundation-auth-ota-release/01-CONTEXT.md
