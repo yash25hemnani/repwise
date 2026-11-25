@@ -2,7 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:repwise/core/layout/app_shell.dart';
+import 'package:repwise/features/auth/providers/auth_provider.dart';
 import 'package:repwise/features/auth/screens/login_screen.dart';
+import 'package:repwise/features/auth/screens/verify_email_screen.dart';
 import 'package:repwise/features/auth/services/auth_service.dart';
 import 'package:repwise/features/profile/providers/user_provider.dart';
 
@@ -12,17 +14,18 @@ class AuthGate extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Rebuilds on every sign in and sign out
-    return StreamBuilder<User?>(
-      stream: AuthService().authStateChanges,
-      builder: (context, snapshot) {
-        // Firebase hasn't reported the auth state yet
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const _Loading();
-        }
-
-        final user = snapshot.data;
+    // Rebuilds on sign in, sign out and verification
+    return ref.watch(authUserProvider).when(
+      loading: () => const _Loading(),
+      error: (err, stack) =>
+          _ProfileError(title: "Couldn't check your sign-in", error: err),
+      data: (user) {
         if (user == null) return const LoginScreen();
+
+        // Google accounts arrive verified; email sign-ups wait here
+        if (!user.emailVerified) {
+          return VerifyEmailScreen(email: user.email ?? '');
+        }
 
         // Signed in, so check for a users/{uid} profile
         final profileAsync = ref.watch(userProfileProvider(user.uid));

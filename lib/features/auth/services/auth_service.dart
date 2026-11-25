@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:repwise/features/profile/repositories/user_repository.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -15,7 +14,11 @@ class AuthService {
 
   User? get currentUser => _auth.currentUser;
 
-  // Creates the account, saves the name and sends a verification email
+  // Also emits when the user reloads or their token refreshes
+  Stream<User?> get userChanges => _auth.userChanges();
+
+  // Creates the account, saves the name and sends a verification email.
+  // AuthGate creates the profile once verified
   Future<User?> signUp(String name, String email, String password) async {
     final credential = await _auth.createUserWithEmailAndPassword(
       email: email,
@@ -24,21 +27,6 @@ class AuthService {
 
     final user = credential.user;
     await user?.updateDisplayName(name);
-
-    // AuthGate may create the profile first, before the name is set
-    if (user != null) {
-      try {
-        await UserRepository().createUser(
-          uid: user.uid,
-          name: name,
-          email: email,
-        );
-      } on FirebaseException {
-        // AuthGate retries and shows the error
-      }
-    }
-
-    // Doesn't block sign-in
     await user?.sendEmailVerification();
     return user;
   }
@@ -50,6 +38,19 @@ class AuthService {
     );
 
     return credential.user;
+  }
+
+  // Refreshing the token makes AuthGate rebuild and lets Firestore see the change
+  Future<bool> checkEmailVerified() async {
+    await _auth.currentUser?.reload();
+    final user = _auth.currentUser;
+    if (user == null || !user.emailVerified) return false;
+    await user.getIdToken(true);
+    return true;
+  }
+
+  Future<void> resendVerification() async {
+    await _auth.currentUser?.sendEmailVerification();
   }
 
   // Returns null if the account picker is closed. AuthGate creates the profile
