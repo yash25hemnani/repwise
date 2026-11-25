@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:repwise/features/profile/repositories/user_repository.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -17,6 +18,19 @@ class AuthService {
 
     final user = credential.user;
     await user?.updateDisplayName(name);
+
+    // AuthGate may create the profile first, before the name is set
+    if (user != null) {
+      try {
+        await UserRepository().createUser(
+          uid: user.uid,
+          name: name,
+          email: email,
+        );
+      } on FirebaseException {
+        // AuthGate retries and shows the error
+      }
+    }
 
     // Doesn't block sign-in
     await user?.sendEmailVerification();
