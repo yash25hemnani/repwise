@@ -1,4 +1,4 @@
-package com.example.repwise
+package com.yashhemnani.repwise
 
 import io.flutter.embedding.android.FlutterActivity
 

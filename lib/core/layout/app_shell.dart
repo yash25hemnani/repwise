@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:repwise/core/layout/bottom_navbar.dart';
 import 'package:repwise/core/layout/nav_item_model.dart';
 import 'package:repwise/core/widgets/coming_soon.dart';
+import 'package:repwise/features/settings/screens/settings_screen.dart';
 
 // The signed-in app: the bottom navbar and the page for the selected tab
 class AppShell extends StatefulWidget {
@@ -44,7 +45,7 @@ class _AppShellState extends State<AppShell> {
       label: 'Progress',
     ),
     NavItemModel(
-      page: ComingSoon(title: 'Settings'),
+      page: SettingsScreen(),
       icon: Icons.settings_outlined,
       activeIcon: Icons.settings_rounded,
       label: 'Settings',

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "992329960296",
+    "project_id": "repwise-25",
+    "storage_bucket": "repwise-25.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:992329960296:android:07e3b516a9c2b85dc5e4dd",
+        "android_client_info": {
+          "package_name": "com.yashhemnani.repwise"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "992329960296-assir00lbkp65d1a9fsc0k2fqs3s35ji.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yashhemnani.repwise",
+            "certificate_hash": "f9adad1da5e2b2e3a478c89e84a051496412e131"
+          }
+        },
+        {
+          "client_id": "992329960296-06vb4768t10eui1rjnr7rhul2ord54d1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtC73r8yZaXJboNcd0CbsO-hhKAEetD4A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "992329960296-06vb4768t10eui1rjnr7rhul2ord54d1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
