@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:repwise/core/theme/app_colors.dart';
 import 'package:repwise/features/auth/screens/signup_screen.dart';
 import 'package:repwise/features/auth/services/auth_service.dart';
+import 'package:repwise/features/auth/widgets/google_sign_in_button.dart';
+import 'package:repwise/features/auth/widgets/or_divider.dart';
 import 'package:repwise/features/auth/widgets/password_field.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -153,6 +155,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             )
                           : const Text('Log in'),
                     ),
+                    const SizedBox(height: 16),
+                    const OrDivider(),
+                    const SizedBox(height: 16),
+                    // AuthGate switches screens once signed in
+                    const GoogleSignInButton(),
                     const SizedBox(height: 12),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

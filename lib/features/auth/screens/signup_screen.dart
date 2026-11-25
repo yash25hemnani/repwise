@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:repwise/core/theme/app_colors.dart';
 import 'package:repwise/features/auth/services/auth_service.dart';
+import 'package:repwise/features/auth/widgets/google_sign_in_button.dart';
+import 'package:repwise/features/auth/widgets/or_divider.dart';
 import 'package:repwise/features/auth/widgets/password_field.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -179,6 +181,12 @@ class _SignupScreenState extends State<SignupScreen> {
                               ),
                             )
                           : const Text('Create account'),
+                    ),
+                    const SizedBox(height: 16),
+                    const OrDivider(),
+                    const SizedBox(height: 16),
+                    GoogleSignInButton(
+                      onSignedIn: () => Navigator.pop(context),
                     ),
                     const SizedBox(height: 12),
                     Row(
