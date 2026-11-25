@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:repwise/core/theme/app_colors.dart';
 import 'package:repwise/features/auth/services/auth_service.dart';
+import 'package:repwise/features/settings/widgets/theme_picker.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -19,7 +20,7 @@ class SettingsScreen extends StatelessWidget {
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            style: TextButton.styleFrom(foregroundColor: AppColors.red),
+            style: TextButton.styleFrom(foregroundColor: context.colors.red),
             child: const Text('Log out'),
           ),
         ],
@@ -32,6 +33,7 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = AuthService().currentUser;
+    final colors = context.colors;
 
     return Scaffold(
       appBar: AppBar(title: const Text('Settings')),
@@ -43,15 +45,20 @@ class SettingsScreen extends StatelessWidget {
               title: Text(user.displayName ?? 'Your account'),
               subtitle: Text(
                 user.email ?? '',
-                style: const TextStyle(color: AppColors.textSecondary),
+                style: TextStyle(color: colors.textSecondary),
               ),
             ),
+          const ListTile(
+            leading: Icon(Icons.contrast_rounded),
+            title: Text('Theme'),
+          ),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(16, 0, 16, 8),
+            child: ThemePicker(),
+          ),
           ListTile(
-            leading: const Icon(Icons.logout_rounded, color: AppColors.red),
-            title: const Text(
-              'Log out',
-              style: TextStyle(color: AppColors.red),
-            ),
+            leading: Icon(Icons.logout_rounded, color: colors.red),
+            title: Text('Log out', style: TextStyle(color: colors.red)),
             onTap: () => _confirmLogOut(context),
           ),
         ],

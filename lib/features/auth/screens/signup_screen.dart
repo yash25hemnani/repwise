@@ -117,7 +117,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       'Plan your week and log every set.',
                       textAlign: TextAlign.center,
                       style: text.bodyMedium?.copyWith(
-                        color: AppColors.textSecondary,
+                        color: context.colors.textSecondary,
                       ),
                     ),
                     const SizedBox(height: 24),
@@ -157,7 +157,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       child: Text(
                         'At least 8 characters',
                         style: text.bodySmall?.copyWith(
-                          color: AppColors.textSecondary,
+                          color: context.colors.textSecondary,
                         ),
                       ),
                     ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:repwise/core/theme/app_colors.dart';
 
@@ -34,26 +35,56 @@ class AppTheme {
     );
   }
 
-  static ThemeData get light => ThemeData(
-    useMaterial3: true,
-    textTheme: _weighted(ThemeData.light().textTheme),
-  );
+  static ThemeData get light =>
+      _build(AppColors.light, Brightness.light, ThemeData.light().textTheme);
 
-  static ThemeData get dark => ThemeData(
-    useMaterial3: true,
-    brightness: Brightness.dark,
-    scaffoldBackgroundColor: AppColors.background,
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: AppColors.green,
-      brightness: Brightness.dark,
-      primary: AppColors.green,
-      onPrimary: AppColors.onAccent,
-      surface: AppColors.background,
-    ),
-    textTheme: _weighted(ThemeData.dark().textTheme),
-    snackBarTheme: const SnackBarThemeData(
-      behavior: SnackBarBehavior.floating,
-      backgroundColor: AppColors.surface,
-    ),
-  );
+  static ThemeData get dark =>
+      _build(AppColors.dark, Brightness.dark, ThemeData.dark().textTheme);
+
+  static ThemeData _build(AppColors c, Brightness brightness, TextTheme base) {
+    final isDark = brightness == Brightness.dark;
+    final textTheme = _weighted(base);
+
+    // Status and nav bar icons flip so they show on the background
+    final overlay = SystemUiOverlayStyle(
+      statusBarColor: AppColors.transparent,
+      statusBarIconBrightness: isDark ? Brightness.light : Brightness.dark,
+      statusBarBrightness: brightness,
+      systemNavigationBarColor: c.background,
+      systemNavigationBarIconBrightness: isDark
+          ? Brightness.light
+          : Brightness.dark,
+    );
+
+    return ThemeData(
+      useMaterial3: true,
+      brightness: brightness,
+      scaffoldBackgroundColor: c.background,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: AppColors.green,
+        brightness: brightness,
+        primary: c.greenText,
+        onPrimary: c.onGreenText,
+        surface: c.background,
+        error: c.red,
+      ),
+      textTheme: textTheme,
+      extensions: [c],
+      appBarTheme: AppBarTheme(systemOverlayStyle: overlay),
+      // Mint with black text in both modes, like the selected navbar pill
+      filledButtonTheme: FilledButtonThemeData(
+        style: FilledButton.styleFrom(
+          backgroundColor: AppColors.green,
+          foregroundColor: AppColors.onAccent,
+        ),
+      ),
+      dividerTheme: DividerThemeData(color: c.border),
+      snackBarTheme: SnackBarThemeData(
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: c.surface,
+        contentTextStyle: textTheme.bodyMedium?.copyWith(color: c.text),
+        actionTextColor: c.greenText,
+      ),
+    );
+  }
 }

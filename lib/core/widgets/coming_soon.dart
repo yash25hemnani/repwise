@@ -15,7 +15,7 @@ class ComingSoon extends StatelessWidget {
           '$title is coming soon',
           style: Theme.of(
             context,
-          ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
+          ).textTheme.bodyMedium?.copyWith(color: context.colors.textSecondary),
         ),
       ),
     );

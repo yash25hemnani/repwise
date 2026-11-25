@@ -51,8 +51,8 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
     return OutlinedButton(
       onPressed: _signIn,
       style: OutlinedButton.styleFrom(
-        foregroundColor: AppColors.text,
-        side: const BorderSide(color: AppColors.border),
+        foregroundColor: context.colors.text,
+        side: BorderSide(color: context.colors.border),
       ),
       child: _isLoading
           ? const SizedBox.square(

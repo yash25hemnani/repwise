@@ -17,7 +17,7 @@ class BottomNavbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: AppColors.background,
+      color: context.colors.background,
       child: SafeArea(
         top: false,
         child: Padding(
@@ -41,7 +41,7 @@ class BottomNavbar extends StatelessWidget {
   }
 }
 
-// A dark circle with an icon, or a green pill with icon and label when selected
+// A surface circle with an icon, or a green pill with icon and label when selected
 class _NavItem extends StatelessWidget {
   final NavItemModel item;
   final bool selected;
@@ -55,10 +55,11 @@ class _NavItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = selected ? AppColors.onAccent : AppColors.textSecondary;
+    final colors = context.colors;
+    final color = selected ? AppColors.onAccent : colors.textSecondary;
 
     return Material(
-      color: selected ? AppColors.green : AppColors.surface,
+      color: selected ? AppColors.green : colors.surface,
       shape: const StadiumBorder(),
       clipBehavior: Clip.antiAlias,
       child: InkWell(

@@ -113,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       'Log in to pick up your training.',
                       textAlign: TextAlign.center,
                       style: text.bodyMedium?.copyWith(
-                        color: AppColors.textSecondary,
+                        color: context.colors.textSecondary,
                       ),
                     ),
                     const SizedBox(height: 24),

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:repwise/features/profile/models/user_model.dart';
 
 class UserRepository {
@@ -32,6 +33,12 @@ class UserRepository {
 
       final savedName = snap.data()?['name'] as String? ?? '';
       if (savedName.isEmpty && name.isNotEmpty) tx.update(ref, {'name': name});
+    });
+  }
+
+  Future<void> updateTheme(String uid, ThemeMode theme) {
+    return _db.collection('users').doc(uid).update({
+      'settings.theme': theme.name,
     });
   }
 
