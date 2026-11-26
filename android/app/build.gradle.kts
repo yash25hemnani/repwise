@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     // START: FlutterFire Configuration
@@ -7,6 +9,12 @@ plugins {
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
+
+// Release signing key, from android/key.properties (kept out of git).
+// Every update must use the same key, or phones refuse to install it.
+val keyProps = Properties()
+val keyPropsFile = rootProject.file("key.properties")
+if (keyPropsFile.exists()) keyPropsFile.inputStream().use { keyProps.load(it) }
 
 android {
     namespace = "com.yashhemnani.repwise"
@@ -29,11 +37,23 @@ android {
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        create("release") {
+            keyAlias = keyProps["keyAlias"] as String?
+            keyPassword = keyProps["keyPassword"] as String?
+            storeFile = (keyProps["storeFile"] as String?)?.let { file(it) }
+            storePassword = keyProps["storePassword"] as String?
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            // Falls back to the debug key on a machine without key.properties
+            signingConfig = if (keyProps.isEmpty) {
+                signingConfigs.getByName("debug")
+            } else {
+                signingConfigs.getByName("release")
+            }
         }
     }
 }

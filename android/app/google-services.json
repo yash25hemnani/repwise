@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "992329960296-pmtjq25cvlaso97sk9kl1bca7qde6ep7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yashhemnani.repwise",
+            "certificate_hash": "30e8c980090ec8d82fbc2851fdabc54180735502"
+          }
+        },
+        {
           "client_id": "992329960296-06vb4768t10eui1rjnr7rhul2ord54d1.apps.googleusercontent.com",
           "client_type": 3
         }
