@@ -95,6 +95,20 @@ Deferred to the next milestone. Tracked but not in the current roadmap.
 - **PROT-04**: User sees their daily protein total against a goal
 - **PROT-05**: User can view their protein history
 
+### Trainers
+
+Idea noted 2026-11-26. Not scoped yet; the details below are a first draft.
+
+- **TRNR-01**: An account can be a trainer. The role is granted by an admin, never self-set by the user
+- **TRNR-02**: A trainer can link to clients, and the client accepts the link
+- **TRNR-03**: A trainer can create and edit workout plans for their clients
+- **TRNR-04**: A client trains from a trainer-made plan like their own, widget included
+
+Keep in mind before then:
+- Plans live under the client and record who authored them, so trainer-made plans need no migration
+- The user doc's role field must not be writable by the user (Firestore rules or custom claims)
+- Firestore rules will need a trainer → linked-client write exception to "each user accesses only their own data"
+
 ### Platform
 
 - **PLAT-01**: iOS release with Sign in with Apple
@@ -173,4 +187,4 @@ Deferred to the next milestone. Tracked but not in the current roadmap.
 
 ---
 *Requirements defined: 2026-11-20*
-*Last updated: 2026-11-20 after roadmap creation (traceability filled)*
+*Last updated: 2026-11-26 after noting trainers as a v2 idea*

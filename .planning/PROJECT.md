@@ -69,6 +69,9 @@ At the gym, the user can see their current exercise and what they lifted last ti
 - [ ] AI calls go through the Express backend: Groq (free tier) first, Gemini as fallback. No AI keys in the app
 - [ ] Daily protein total against a goal
 
+**Trainers (later, not scoped yet)**
+- [ ] Trainers create and manage workout plans for their clients (see TRNR-* in REQUIREMENTS.md)
+
 ### Out of Scope
 
 - Guest / anonymous mode: the user decided an account is required
@@ -76,7 +79,7 @@ At the gym, the user can see their current exercise and what they lifted last ti
 - Google Play Store distribution in v1: OTA via GitHub Releases ships faster. Play Store is a later step for a large audience
 - Google Drive for media: unreliable for hotlinking (rate limits, interstitials). Cloudinary chosen
 - SQL / Postgres backend: Firestore fits the data, gives offline support, and matches shelf_snap's code flow
-- Social features (friends, sharing, leaderboards): not part of the vision
+- Social features (friends, sharing, leaderboards): not part of the vision. The trainer → client link is a separate, planned feature
 - Calling Groq/Gemini directly from the app: keys would be extractable from the APK
 
 ## Context
