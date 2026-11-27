@@ -20,7 +20,7 @@ class SettingsScreen extends StatelessWidget {
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            style: TextButton.styleFrom(foregroundColor: context.colors.red),
+            style: TextButton.styleFrom(foregroundColor: context.colors.redText),
             child: const Text('Log out'),
           ),
         ],
@@ -57,8 +57,8 @@ class SettingsScreen extends StatelessWidget {
             child: ThemePicker(),
           ),
           ListTile(
-            leading: Icon(Icons.logout_rounded, color: colors.red),
-            title: Text('Log out', style: TextStyle(color: colors.red)),
+            leading: Icon(Icons.logout_rounded, color: colors.redText),
+            title: Text('Log out', style: TextStyle(color: colors.redText)),
             onTap: () => _confirmLogOut(context),
           ),
         ],

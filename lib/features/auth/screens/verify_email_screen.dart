@@ -86,7 +86,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                 Icon(
                   Icons.mark_email_unread_rounded,
                   size: 56,
-                  color: colors.greenText,
+                  color: colors.primaryText,
                 ),
                 const SizedBox(height: 16),
                 Text(

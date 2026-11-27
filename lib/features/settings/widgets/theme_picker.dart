@@ -51,13 +51,13 @@ class _ThemePill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final color = selected ? AppColors.onAccent : colors.textSecondary;
+    final color = selected ? AppColors.onPrimary : colors.textSecondary;
 
     return Semantics(
       selected: selected,
       button: true,
       child: Material(
-        color: selected ? AppColors.green : colors.surface,
+        color: selected ? AppColors.primary : colors.surface,
         shape: const StadiumBorder(),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
@@ -73,7 +73,7 @@ class _ThemePill extends StatelessWidget {
                   label,
                   style: Theme.of(
                     context,
-                  ).textTheme.titleSmall?.copyWith(color: color),
+                  ).textTheme.labelLarge?.copyWith(color: color),
                 ),
               ],
             ),
