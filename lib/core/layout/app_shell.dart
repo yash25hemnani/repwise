@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:repwise/core/layout/bottom_navbar.dart';
 import 'package:repwise/core/layout/nav_item_model.dart';
+import 'package:repwise/core/theme/app_colors.dart';
 import 'package:repwise/core/widgets/coming_soon.dart';
+import 'package:repwise/features/plans/screens/plans_screen.dart';
 import 'package:repwise/features/settings/screens/settings_screen.dart';
+import 'package:repwise/features/today/screens/today_screen.dart';
 
 // The signed-in app: the bottom navbar and the page for the selected tab
 class AppShell extends StatefulWidget {
@@ -27,28 +30,28 @@ class _AppShellState extends State<AppShell> {
 
   final navItems = const [
     NavItemModel(
-      page: ComingSoon(title: 'Today'),
+      page: TodayScreen(),
       icon: Icons.home_outlined,
-      activeIcon: Icons.home_rounded,
       label: 'Today',
+      color: AppColors.blue,
     ),
     NavItemModel(
-      page: ComingSoon(title: 'Plan'),
+      page: PlansScreen(),
       icon: Icons.grid_view_outlined,
-      activeIcon: Icons.grid_view_rounded,
       label: 'Plan',
+      color: AppColors.yellow,
     ),
     NavItemModel(
       page: ComingSoon(title: 'Progress'),
       icon: Icons.insights_outlined,
-      activeIcon: Icons.insights_rounded,
       label: 'Progress',
+      color: AppColors.white,
     ),
     NavItemModel(
       page: SettingsScreen(),
       icon: Icons.settings_outlined,
-      activeIcon: Icons.settings_rounded,
       label: 'Settings',
+      color: AppColors.red,
     ),
   ];
 

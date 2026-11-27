@@ -41,7 +41,8 @@ class BottomNavbar extends StatelessWidget {
   }
 }
 
-// A surface circle with an icon, or a green pill with icon and label when selected
+// A surface circle with an icon, or when selected a card pill with the
+// destination's plate dot and label, outlined in light mode
 class _NavItem extends StatelessWidget {
   final NavItemModel item;
   final bool selected;
@@ -55,40 +56,76 @@ class _NavItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.colors;
-    final color = selected ? AppColors.onAccent : colors.textSecondary;
+    final c = context.colors;
+    final light = Theme.of(context).brightness == Brightness.light;
+    final animate = !MediaQuery.disableAnimationsOf(context);
 
-    return Material(
-      color: selected ? AppColors.green : colors.surface,
-      shape: const StadiumBorder(),
-      clipBehavior: Clip.antiAlias,
-      child: InkWell(
-        onTap: onTap,
-        child: AnimatedSize(
-          duration: const Duration(milliseconds: 200),
-          curve: Curves.easeOut,
-          child: SizedBox(
-            height: 52,
-            child: Padding(
-              // 14 + 24 icon + 14 = a 52 circle when not selected
-              padding: EdgeInsets.symmetric(horizontal: selected ? 24 : 14),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(selected ? item.activeIcon : item.icon, color: color),
-                  if (selected) ...[
-                    const SizedBox(width: 8),
-                    Text(
-                      item.label,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.titleSmall?.copyWith(color: color),
-                    ),
-                  ],
-                ],
+    return Semantics(
+      button: true,
+      selected: selected,
+      label: item.label,
+      excludeSemantics: true,
+      child: Material(
+        color: selected ? c.card : c.surface,
+        shape: StadiumBorder(
+          side: selected && light
+              ? BorderSide(color: c.ink, width: 2)
+              : BorderSide.none,
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: onTap,
+          child: AnimatedSize(
+            duration: animate
+                ? const Duration(milliseconds: 200)
+                : Duration.zero,
+            curve: Curves.easeOut,
+            child: SizedBox(
+              height: 52,
+              child: Padding(
+                // 14 + 24 icon + 14 = a 52 circle when not selected
+                padding: EdgeInsets.symmetric(horizontal: selected ? 20 : 14),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: selected
+                      ? [
+                          _PlateDot(color: item.color),
+                          const SizedBox(width: 10),
+                          Text(
+                            item.label,
+                            style: Theme.of(
+                              context,
+                            ).textTheme.labelLarge?.copyWith(color: c.text),
+                          ),
+                        ]
+                      : [Icon(item.icon, color: c.textSecondary)],
+                ),
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _PlateDot extends StatelessWidget {
+  final Color color;
+
+  const _PlateDot({required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 11,
+      height: 11,
+      decoration: BoxDecoration(
+        color: color,
+        shape: BoxShape.circle,
+        border: Border.all(
+          color: context.colors.ink,
+          width: 2,
+          strokeAlign: BorderSide.strokeAlignOutside,
         ),
       ),
     );
