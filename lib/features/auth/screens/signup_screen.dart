@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:repwise/core/theme/app_colors.dart';
 import 'package:repwise/features/auth/services/auth_service.dart';
 import 'package:repwise/features/auth/widgets/google_sign_in_button.dart';
@@ -107,6 +108,15 @@ class _SignupScreenState extends State<SignupScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    // The blue 20 kg plate is the Repwise logo
+                    Center(
+                      child: SvgPicture.asset(
+                        'assets/icons/plate_20.svg',
+                        width: 96,
+                        semanticsLabel: 'Repwise',
+                      ),
+                    ),
+                    const SizedBox(height: 20),
                     Text(
                       'Create account',
                       textAlign: TextAlign.center,
