@@ -1,12 +1,46 @@
 rules_version = '2';
-
 service cloud.firestore {
   match /databases/{database}/documents {
+    function isVerified() {
+      return request.auth != null
+        && request.auth.token.email_verified == true;
+    }
+
+    function isOwner(uid) {
+      return isVerified() && request.auth.uid == uid;
+    }
+
     // Each user can only read and write their own profile, once verified
     match /users/{uid} {
-      allow read, write: if request.auth != null
-        && request.auth.uid == uid
-        && request.auth.token.email_verified == true;
+      allow read, write: if isOwner(uid);
+
+      // Workout plans belong to the user they sit under
+      match /plans/{planId} {
+        allow read, write: if isOwner(uid);
+      }
+
+      // Logged workouts, private to the user
+      match /sessions/{sessionId} {
+        allow read, write: if isOwner(uid);
+      }
+    }
+
+    // Exercise library is read-only in the app. The admin panel writes
+    // with firebase-admin, which skips these rules
+    match /exercises/{id} {
+      allow read: if isVerified();
+    }
+
+    match /muscleGroups/{id} {
+      allow read: if isVerified();
+    }
+
+    match /targetMuscles/{id} {
+      allow read: if isVerified();
+    }
+
+    match /equipment/{id} {
+      allow read: if isVerified();
     }
   }
 }

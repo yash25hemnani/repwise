@@ -9,6 +9,8 @@ class UserModel {
   final DateTime createdAt;
   // Stored under settings, where later ones like weight unit will go
   final ThemeMode theme;
+  // The plan Today follows; null until the first plan is made
+  final String? activePlanId;
 
   const UserModel({
     required this.uid,
@@ -16,6 +18,7 @@ class UserModel {
     required this.email,
     required this.createdAt,
     this.theme = ThemeMode.system,
+    this.activePlanId,
   });
 
   // uid is the doc id, so it isn't stored as a field
@@ -24,6 +27,7 @@ class UserModel {
     'email': email,
     'createdAt': Timestamp.fromDate(createdAt),
     'settings': {'theme': theme.name},
+    if (activePlanId != null) 'activePlanId': activePlanId,
   };
 
   factory UserModel.fromMap(String uid, Map<String, dynamic> map) {
@@ -37,6 +41,7 @@ class UserModel {
       createdAt: (map['createdAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
       theme:
           ThemeMode.values.asNameMap()[settings['theme']] ?? ThemeMode.system,
+      activePlanId: map['activePlanId'] as String?,
     );
   }
 }
